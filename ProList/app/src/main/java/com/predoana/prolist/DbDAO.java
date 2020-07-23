@@ -2,6 +2,7 @@ package com.predoana.prolist;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -19,6 +20,7 @@ public interface DbDAO {
     @Query("SELECT COUNT(*) from DbTable")
     LiveData<Integer> countItems();
 
+    @Delete
     void deleteitem(DbTable dbTable);
 
 }
