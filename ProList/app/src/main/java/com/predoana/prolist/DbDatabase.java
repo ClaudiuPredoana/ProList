@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@@Database(entities = DbTable.class, version = 1)
+@Database(entities = DbTable.class, version = 1)
 public abstract class DbDatabase extends RoomDatabase {
     public abstract DbDAO dbDAO();
 
