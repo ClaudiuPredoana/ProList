@@ -22,4 +22,12 @@ public class ItemRepository {
         return DbDatabase.getInstance(context).dbDAO().getAllItems();
     }
 
+    public LiveData<Integer> getItemCount() {
+        return DbDatabase.getInstance(context).dbDAO().countItems();
+    }
+
+    public void deleteItem(DbTable dbTable) {
+        AsyncTask.execute(()->DbDatabase.getInstance(context).dbDAO().deleteitem(dbTable));
+    }
+
 }
