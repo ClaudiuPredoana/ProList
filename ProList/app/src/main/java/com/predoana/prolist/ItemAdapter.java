@@ -26,7 +26,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false )
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false );
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
@@ -34,7 +34,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder , int position){
-        DbTable dbTable = shoppingItems.set(position);
+        DbTable dbTable = shoppingItems.get(position);
 
         holder.txtItemName.setText(dbTable.item);
         holder.txtItemQuantity.setText("Quantity: " + dbTable.quantity);
