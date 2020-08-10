@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +47,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txtItemName;
         TextView txtItemQuantity;
         ImageView imageView;
@@ -55,8 +56,18 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         super(itemView);
         txtItemName = itemView.findViewById(R.id.txt_item_name);
         txtItemQuantity = itemView.findViewById(R.id.txt_item_quantity);
-
         imageView = itemView.findViewById(R.id.img_delete);
+
+        imageView.setOnClickListener(this);
     }
-}
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            DbTable dbTable = shoppingItems.get(position);
+            ItemRepository itemRepository = new ItemRepository(v.getContext());
+            itemRepository.deleteItem(dbTable);
+            Toast.makeText(v.getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
