@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivityViewModel mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-      
+        button.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v){
+
+            }
+        };
     }
 }
