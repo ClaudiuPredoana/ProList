@@ -51,8 +51,15 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v){
+                String name = etxtItem.getText().toString();
+                String amount = spinner.getSelectedItem().toString();
+                DbTable dbTable = new DbTable();
+                dbTable.item = name;
+                dbTable.quantity = Integer.valueOf(amount );
+                mViewModel.insertNewItem(dbTable);
+                etxtItem.getText().clear();
 
             }
-        };
+        });
     }
 }
