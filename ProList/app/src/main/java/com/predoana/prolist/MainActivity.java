@@ -1,7 +1,7 @@
 package com.predoana.prolist;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         EditText etxtItem = findViewById(R.id.etxt_new_item);
         Button button = findViewById(R.id.btn_add);
 
-        MainActivityViewModel mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        MainActivityViewModel mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
         List<DbTable> dbTables = new ArrayList<>();
         ItemAdapter itemAdapter = new ItemAdapter(dbTables);
@@ -61,5 +61,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        mViewModel.getItems().observe(this, dbTables1 -> {
+                itemAdapter.setData(dbTables1);
+                itemAdapter.notifyDataSetChanged();
+        });
+
+        mViewModel.getItemCount().observe(this, integer ->
+                txtCount.setText(String.valueOf(integer)));
     }
 }
