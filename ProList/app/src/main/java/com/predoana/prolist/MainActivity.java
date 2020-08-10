@@ -1,9 +1,11 @@
 package com.predoana.prolist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,5 +30,8 @@ public class MainActivity extends AppCompatActivity {
         EditText etxtItem = findViewById(R.id.etxt_new_item);
         Button button = findViewById(R.id.btn_add);
 
+        MainActivityViewModel mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+      
     }
 }
