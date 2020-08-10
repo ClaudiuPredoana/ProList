@@ -2,6 +2,8 @@ package com.predoana.prolist;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -11,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
         Button button = findViewById(R.id.btn_add);
 
         MainActivityViewModel mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        List<DbTable> dbTables = new ArrayList<>();
+        ItemAdapter itemAdapter = new ItemAdapter(dbTables);
+
+        recyclerView.setAdapter(itemAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        RecyclerView.ItemDecoration itemDecoration = new
+                DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
+
 
         button.setOnClickListener(new View.OnClickListener() {
 
